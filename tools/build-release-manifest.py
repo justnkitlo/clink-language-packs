@@ -26,7 +26,7 @@ root = pathlib.Path(__file__).resolve().parents[1]; lexicons = root / "Lexicons"
 catalogue = json.loads((root / "catalog/language-wave.json").read_text())
 blocked = {x["code"] for x in catalogue["packs"] + catalogue["imes"] if x["status"] == "blocked"}
 packs = []
-for clex in sorted(path for path in lexicons.glob("*.clex") if not path.name.startswith("._")):
+for clex in [lexicons / "zh_hant.clex"]:
     code = clex.stem
     if code in blocked: raise SystemExit(f"blocked language {code} has release asset")
     entries = []
